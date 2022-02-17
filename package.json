@@ -1,0 +1,25 @@
+{
+  "name": "koa-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "nodemon": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-cors": "^0.0.16",
+    "koa-router": "^10.1.1",
+    "mongoose": "^6.2.2"
+  },
+  "devDependencies": {
+    "@types/koa-bodyparser": "^4.3.5",
+    "@types/koa-cors": "^0.0.2",
+    "@types/koa-router": "^7.4.4"
+  }
+}
