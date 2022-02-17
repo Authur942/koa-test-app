@@ -11,11 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.13.4",
+    "koa": "^2.0.0",
     "koa-bodyparser": "^4.3.0",
     "koa-cors": "^0.0.16",
     "koa-router": "^10.1.1",
-    "mongoose": "^6.2.2"
+    "loadsh": "^0.0.4",
+    "mongoose": "^6.2.2",
+    "xss": "^1.0.10"
   },
   "devDependencies": {
     "@types/koa-bodyparser": "^4.3.5",

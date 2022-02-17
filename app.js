@@ -1,30 +1,50 @@
 const Koa = require('koa')
+const fs = require('fs')
 // const Routes = require('./router/index')
-// const bodyParse = require('koa-bodyparser') //解析ctx.body的中间件
-// const cors = require('koa-cors') // 跨域中间件
+// 解析ctx.body的中间件
+const bodyParser = require('koa-bodyparser')
+// 跨域中间件
+// const cors = require('koa-cors')
+const mongoose = require('mongoose')
 
-
-// 实例化koa
+// !实例化koa
 const app = new Koa()
 
 const port = process.env.PORT || 4000
 
-// 使用ctx.body解析中间件
-// app.use(bodyParse())
-// // 使用跨域中间件，解决跨域问题
-// app.use(cors())
+app.use(async (ctx, next) => {
+	await next()
+	ctx.response.type = 'application/json;chartset=UTF-8'
+})
 
-// 配置并初始化路由中间件
+const dbOptions = {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+}
+
+// !链接数数据库
+mongoose.connect('mongodb://127.0.0.1/koa-test-app', dbOptions).then(
+	() => {
+		console.info('connect success message: MongoDB is ready!')
+	},
+	err => {
+		console.error('connect error:', err)
+	}
+)
+
+// !bodyParser中间件需要在加载路由之前加载
+app.use(bodyParser())
+
+// !配置并初始化路由中间件，加载路由中间件
 const router = require('./routes/router')()
 app.use(router.routes()).use(router.allowedMethods())
 
-// 错误处理
-app.on('error', (err,ctx) => {
-  console.log(`server Error: ${err}`)
+// !错误处理
+app.on('error', (err, ctx) => {
+	console.log(`server Error: ${err}`)
 })
 
-
-// 设置端口检测
+// !设置端口检测
 app.listen(port, () => {
-	console.log(`server start on ${port}`)
+	console.log(`server start on ${port}!`)
 })

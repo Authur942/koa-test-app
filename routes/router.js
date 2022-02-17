@@ -2,7 +2,7 @@ const Router = require('koa-router')
 
 const home = require('./home')()
 const page = require('./page')()
-const api = require('./api')()
+const api = require('./userRouter')()
 
 // 装在所有的路由
 module.exports = () => {
