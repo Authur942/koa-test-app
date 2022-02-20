@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-// 账户的数据库模型
+// 账户集合的数据库模型
 let UserSchema = new mongoose.Schema({
   username: String,
   password: String,

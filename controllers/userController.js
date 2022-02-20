@@ -22,7 +22,9 @@ exports.addUser = async (ctx, next) => {
 	let newUser = new User({
 		username: xss(_.trim(jsonRequestBody.username)),
 		password: xss(_.trim(jsonRequestBody.password)),
-		email: xss(_.trim(jsonRequestBody.email))
+		email: xss(_.trim(jsonRequestBody.email)),
+		age: xss(_.trim(jsonRequestBody.age)),
+		sex: xss(_.trim(jsonRequestBody.sex))
 	})
 	let data = await newUser.save()
 	console.log('data', data)
@@ -52,13 +54,15 @@ exports.updateUser = async (ctx, next) => {
 	console.info(jsonRequestBody.username)
 	const data = await User.updateOne(
 		{
-			_id: xss(_.trim(jsonRequestBody._id))
+			_id: xss(_.trim(jsonRequestBody.id))
 		},
 		{
 			$set: {
 				username: xss(_.trim(jsonRequestBody.username)),
 				password: xss(_.trim(jsonRequestBody.password)),
-				email: xss(_.trim(jsonRequestBody.email))
+				email: xss(_.trim(jsonRequestBody.email)),
+				age: xss(_.trim(jsonRequestBody.age)),
+				sex: xss(_.trim(jsonRequestBody.sex))
 			}
 		}
 	)
