@@ -2,7 +2,7 @@ const User = require('../module/User')
 const _ = require('loadsh')
 const xss = require('xss')
 
-// 获取用户列表
+// !获取用户列表
 exports.getUserList = async (ctx, next) => {
 	let val = null
 	const data = await User.find()
@@ -14,11 +14,11 @@ exports.getUserList = async (ctx, next) => {
 	ctx.response.body = result
 	return result
 }
-// 添加用户
+// !添加用户
 exports.addUser = async (ctx, next) => {
 	let val = null
 	const jsonRequestBody = ctx.request.body
-	console.info(jsonRequestBody.username)
+	console.info('新增的用户名：',jsonRequestBody.username)
 	let newUser = new User({
 		username: xss(_.trim(jsonRequestBody.username)),
 		password: xss(_.trim(jsonRequestBody.password)),
@@ -36,7 +36,7 @@ exports.addUser = async (ctx, next) => {
 	ctx.response.body = result
 	return result
 }
-// 删除用户
+// !删除用户
 exports.deleteUser = async (ctx, next) => {
 	let val = null
 	const data = await User.remove({ _id: ctx.params.id })
@@ -47,7 +47,7 @@ exports.deleteUser = async (ctx, next) => {
 	ctx.response.body = result
 	return result
 }
-// 更新用户
+// !更新用户
 exports.updateUser = async (ctx, next) => {
 	let val = null
 	const jsonRequestBody = ctx.request.body
@@ -74,7 +74,7 @@ exports.updateUser = async (ctx, next) => {
   ctx.response.body = result
   return result
 }
-// 根据id获取用户信息
+// !根据id获取用户信息
 exports.getUserInfoById = async (ctx,next) => {
   let val = null
   console.log(ctx.params.id)
